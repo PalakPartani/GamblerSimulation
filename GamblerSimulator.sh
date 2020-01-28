@@ -9,7 +9,7 @@ calcPercent()
 checkBet() {
 	#for 20 days
 	calcPercent
-	#if taken inside for loop then it win go upto amount 50 only
+	#if taken inside for loop then it will go upto amount 50 only
 	win=0
 	loss=0
 	for ((i=1;i<=20;i++))
@@ -25,21 +25,15 @@ checkBet() {
 			cash=$(($cash-$BET))
 		fi
 	done
-		if (( $cash > 100 ))
-		then
-		 	win=$(( $win + 50 ))
-		else	
-       		        loss=$(( $loss + 50 )) 	
-	fi	
-
+#Adding values in dictionary named gamblerDict
+gamblerDict[$i]=$(($cash-$STAKE))
 done
-echo "Total winning amount : $win"
-echo "Total losing amount :  $loss "
 }
-
 echo "Welcome to Gambler Simulation !"
 #Declaring constants
 readonly STAKE=100
 readonly BET=1
 checkBet
+echo "Days   " ${!gamblerDict[@]}
+echo "Amount W or L" ${gamblerDict[@]}
 
